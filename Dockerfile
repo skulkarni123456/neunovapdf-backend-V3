@@ -17,19 +17,13 @@ RUN apt-get update && \
     ca-certificates && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Create app directory
 WORKDIR /app
 
-# Copy package.json first
 COPY package*.json ./
-
 RUN npm install
 
-# Copy rest of the application
 COPY . .
 
-# Expose port
 EXPOSE 10000
 
-# Run the server
 CMD ["node", "server.js"]
