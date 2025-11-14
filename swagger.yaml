@@ -1,0 +1,105 @@
+
+openapi: 3.0.0
+info:
+  title: Neunovapdf API
+  version: "1.0"
+servers:
+  - url: http://localhost:3000
+paths:
+  /api/merge:
+    post:
+      summary: Merge PDFs
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                files:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+      responses:
+        '200':
+          description: PDF merged
+  /api/split:
+    post:
+      summary: Split PDF into pages
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                pages:
+                  type: string
+      responses:
+        '200':
+          description: ZIP of split pages
+  /api/extract:
+    post:
+      summary: Extract pages
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                pages:
+                  type: string
+      responses:
+        '200':
+          description: PDF with extracted pages
+  /api/compress:
+    post:
+      summary: Compress PDF (placeholder)
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                level:
+                  type: string
+      responses:
+        '200':
+          description: Compressed PDF
+  /api/pdf2jpg:
+    post:
+      summary: Convert PDF to JPG (requires external binary)
+      responses:
+        '501':
+          description: Not Implemented server-side
+  /api/jpg2pdf:
+    post:
+      summary: Convert JPGs to PDF
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                images:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+      responses:
+        '200':
+          description: PDF
+  /api/protect:
+    post:
+      summary: Protect PDF with password (requires qpdf)
+  /api/unlock:
+    post:
+      summary: Unlock PDF with password (requires qpdf)
