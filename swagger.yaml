@@ -1,4 +1,3 @@
-
 openapi: 3.0.0
 info:
   title: Neunovapdf API
@@ -9,97 +8,42 @@ paths:
   /api/merge:
     post:
       summary: Merge PDFs
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                files:
-                  type: array
-                  items:
-                    type: string
-                    format: binary
-      responses:
-        '200':
-          description: PDF merged
   /api/split:
     post:
       summary: Split PDF into pages
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                file:
-                  type: string
-                  format: binary
-                pages:
-                  type: string
-      responses:
-        '200':
-          description: ZIP of split pages
   /api/extract:
     post:
       summary: Extract pages
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                file:
-                  type: string
-                  format: binary
-                pages:
-                  type: string
-      responses:
-        '200':
-          description: PDF with extracted pages
   /api/compress:
     post:
-      summary: Compress PDF (placeholder)
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                file:
-                  type: string
-                  format: binary
-                level:
-                  type: string
-      responses:
-        '200':
-          description: Compressed PDF
+      summary: Compress PDF (uses ghostscript)
   /api/pdf2jpg:
     post:
-      summary: Convert PDF to JPG (requires external binary)
-      responses:
-        '501':
-          description: Not Implemented server-side
+      summary: Convert PDF to JPG (uses pdftoppm)
   /api/jpg2pdf:
     post:
       summary: Convert JPGs to PDF
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                images:
-                  type: array
-                  items:
-                    type: string
-                    format: binary
-      responses:
-        '200':
-          description: PDF
+  /api/word2pdf:
+    post:
+      summary: Convert Word to PDF (uses LibreOffice)
+  /api/excel2pdf:
+    post:
+      summary: Convert Excel to PDF (uses LibreOffice)
+  /api/ppt2pdf:
+    post:
+      summary: Convert PPT to PDF (uses LibreOffice)
+  /api/pdf2word:
+    post:
+      summary: Convert PDF to Word (uses LibreOffice)
+  /api/pdf2excel:
+    post:
+      summary: Convert PDF to Excel (uses LibreOffice)
+  /api/pdf2ppt:
+    post:
+      summary: Convert PDF to PPT (uses LibreOffice)
   /api/protect:
     post:
-      summary: Protect PDF with password (requires qpdf)
+      summary: Protect PDF (uses qpdf)
   /api/unlock:
     post:
-      summary: Unlock PDF with password (requires qpdf)
+      summary: Unlock PDF (uses qpdf)

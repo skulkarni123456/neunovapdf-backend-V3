@@ -1,7 +1,6 @@
 {
-  "name": "neunovapdf-backend",
+  "name": "neunovapdf-backend-docker",
   "version": "1.0.0",
-  "description": "Neunovapdf backend - Express server with PDF tools API (demo-ready).",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
